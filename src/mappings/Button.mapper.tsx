@@ -39,7 +39,7 @@ figmaMapping({
         disabled={figma.State === "Disabled"}
         loading={figma.State === "Loading"}
       >
-        {figma.$children[0].$children}
+        {figma.$findOneByName("✏️ Button text")?.$textContent}
       </Button>
     );
   },

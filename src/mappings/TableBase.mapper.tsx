@@ -14,7 +14,6 @@ figmaMapping({
         columnDefinitions={[
           {
             id: "variable",
-            cell: null as any,
             header: "Variable name",
             sortingField: "name",
             isRowHeader: true,
@@ -22,18 +21,15 @@ figmaMapping({
           {
             id: "value",
             header: "Text value",
-            cell: (item) => item.alt,
             sortingField: "alt",
           },
           {
             id: "type",
             header: "Type",
-            cell: (item) => item.type,
           },
           {
             id: "description",
             header: "Description",
-            cell: (item) => item.description,
           },
         ]}
         columnDisplay={[
@@ -86,6 +82,7 @@ figmaMapping({
             size: "Small",
           },
         ]}
+        selectionType="multi"
         variant="container"
         loading={figma.Type === "Loading"}
         empty={
@@ -93,7 +90,6 @@ figmaMapping({
             <div>No data available</div>
           ) : undefined
         }
-        footer={figma.Footer === "On" ? <div>Table Footer</div> : undefined}
       />
     );
   },

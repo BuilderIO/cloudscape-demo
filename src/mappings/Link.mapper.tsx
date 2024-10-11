@@ -20,7 +20,7 @@ figmaMapping({
         }
         href="#"
       >
-        {figma.$children}
+        {figma.$findOneByName("✏️ Link text")}
       </Link>
     );
   },
