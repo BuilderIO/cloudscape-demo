@@ -1,7 +1,11 @@
-import { TableProps, Table as TableBase } from "@cloudscape-design/components";
+import {
+  TableProps,
+  Table as TableBase,
+  AppLayout as AppLayoutBase,
+  AppLayoutProps,
+} from "@cloudscape-design/components";
 
 export {
-  AppLayout,
   Button,
   AreaChart,
   TopNavigation,
@@ -19,7 +23,12 @@ export {
   HelpPanel,
 } from "@cloudscape-design/components";
 
-// Workaround for the lack of cell function in the Table component
+// Workaround for AppLayout not accepting children - full fix coming shortly
+export const AppLayout = (props: React.PropsWithChildren<AppLayoutProps>) => {
+  return <AppLayoutBase {...props} content={props.children} />;
+};
+
+// Workaround for the lack of cell function in the Table component - coming shortly
 type TablePropsWithoutCellFunction = Omit<TableProps, "columnDefinitions"> & {
   columnDefinitions: Omit<TableProps.ColumnDefinition<any>, "cell">[];
 };
