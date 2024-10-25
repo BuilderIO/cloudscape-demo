@@ -3,18 +3,20 @@ import {
   Table as TableBase,
   AppLayout as AppLayoutBase,
   AppLayoutProps,
+  AreaChartProps,
+  AreaChart as AreaChartBase,
+  BarChartProps,
+  BarChart as BarChartBase,
 } from "@cloudscape-design/components";
 
 export {
   Button,
-  AreaChart,
   TopNavigation,
   Header,
   Pagination,
   TextFilter,
   Input,
   BreadcrumbGroup,
-  BarChart,
   Icon,
   Link,
   FormField,
@@ -22,6 +24,14 @@ export {
   SideNavigation,
   HelpPanel,
 } from "@cloudscape-design/components";
+
+export const AreaChart = (props: AreaChartProps<any>) => {
+  return <AreaChartBase {...props} series={props.series || []} />;
+};
+
+export const BarChart = (props: BarChartProps<any>) => {
+  return <BarChartBase {...props} series={props.series || []} />;
+};
 
 // Workaround for AppLayout not accepting children - full fix coming shortly
 export const AppLayout = (props: React.PropsWithChildren<AppLayoutProps>) => {
@@ -36,7 +46,7 @@ export const Table = (props: TablePropsWithoutCellFunction) => {
   return (
     <TableBase
       {...props}
-      columnDefinitions={props.columnDefinitions.map((col) => ({
+      columnDefinitions={(props.columnDefinitions || []).map((col) => ({
         ...col,
         cell: (item: any) =>
           item[(col.sortingField || col.id) as keyof typeof item],
