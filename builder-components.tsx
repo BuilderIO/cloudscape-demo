@@ -58,6 +58,5 @@ export const Table = (props: TablePropsWithoutCellFunction) => {
 
 const get = (obj: any, path: string) => {
   const value = path.split(".").reduce((acc, part) => acc && acc[part], obj);
-  console.log(obj, path, value);
   return value;
 };
