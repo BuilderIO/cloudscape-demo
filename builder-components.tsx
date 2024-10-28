@@ -48,9 +48,12 @@ export const Table = (props: TablePropsWithoutCellFunction) => {
       {...props}
       columnDefinitions={(props.columnDefinitions || []).map((col) => ({
         ...col,
-        cell: (item: any) =>
-          item[(col.sortingField || col.id) as keyof typeof item],
+        cell: (item: any) => get(item, col.sortingField || col.id || ""),
       }))}
     />
   );
+};
+
+const get = (obj: any, path: string) => {
+  return path.split(".").reduce((acc, part) => acc && acc[part], obj);
 };
