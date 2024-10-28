@@ -48,12 +48,16 @@ export const Table = (props: TablePropsWithoutCellFunction) => {
       {...props}
       columnDefinitions={(props.columnDefinitions || []).map((col) => ({
         ...col,
-        cell: (item: any) => get(item, col.sortingField || col.id || ""),
+        cell: (item: any) =>
+          get(item, col.sortingField || col.id || "") ||
+          get(item, col.id || ""),
       }))}
     />
   );
 };
 
 const get = (obj: any, path: string) => {
-  return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+  const value = path.split(".").reduce((acc, part) => acc && acc[part], obj);
+  console.log(obj, path, value);
+  return value;
 };
